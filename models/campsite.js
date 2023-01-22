@@ -4,6 +4,25 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 //with the above we an use the shorthand
 
+const commentSchema = new Schema({
+    rating: {
+        type: Number,
+        min: 1,
+        max: 5,
+        required: true
+    },
+    text: {
+        type: String,
+        required: true
+    },
+    author: {
+        type: String,
+        required: true
+    }
+}, {
+    timestamps: true
+});
+
 const campsiteSchema = new Schema({
     //an obj that contains info
     name: {
@@ -14,7 +33,8 @@ const campsiteSchema = new Schema({
     description: {
         type: String,
         required: true
-    }
+    },
+    comments: [commentSchema]
 }, {
     timestamps: true
 });
